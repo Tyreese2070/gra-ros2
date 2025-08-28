@@ -19,8 +19,8 @@ find_package(ros_gz_interfaces REQUIRED)
 find_package(common_msgs REQUIRED)
 
 # Add executables
-add_executable(perfect_perception_node src/perfect_perception_node.cpp)
-ament_target_dependencies(perfect_perception_node
+add_executable(perfect_perception src/perfect_perception.cpp)
+ament_target_dependencies(perfect_perception
   rclcpp
   std_msgs
   geometry_msgs
@@ -31,8 +31,8 @@ ament_target_dependencies(perfect_perception_node
   common_msgs
 )
 
-add_executable(perfect_slam_node src/perfect_slam_node.cpp)
-ament_target_dependencies(perfect_slam_node
+add_executable(perfect_SLAM src/perfect_SLAM.cpp)
+ament_target_dependencies(perfect_SLAM
   rclcpp
   std_msgs
   geometry_msgs
@@ -46,8 +46,8 @@ ament_target_dependencies(perfect_slam_node
 
 # Install executables
 install(TARGETS
-  perfect_perception_node
-  perfect_slam_node
+  perfect_perception
+  perfect_SLAM
   DESTINATION lib/${PROJECT_NAME}
 )
 
