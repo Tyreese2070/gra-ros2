@@ -56,4 +56,6 @@ From: $SETUP_DIR/ros_jazzy.sif
     export LD_LIBRARY_PATH=/usr/local/cuda-12.8/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 %runscript
-    # Optional: Customize the default runscript if needed"
+    # Optional: Customize the default runscript if needed" > $SETUP_DIR/custom.def
+
+apptainer build custom.sif custom.def
