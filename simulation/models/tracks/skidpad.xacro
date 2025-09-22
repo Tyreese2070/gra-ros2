@@ -25,7 +25,7 @@
       <uri>model://simulation/models/world/ground_plane</uri>
     </include>
 
-    <xacro:include filename="$(find simulation)/models/cones/cone.sdf.xacro"/>
+    <xacro:include filename="$(find simulation)/models/cones/cone.xacro"/>
 
     <model name="cones">
       <xacro:cone name="blue_1" type="blue" pose="-1.637 0 0.15 0 0 0"/>
