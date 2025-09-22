@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<sdf version='1.7' xmlns:xacro="http://ros.org/wiki/xacro">
+
     <!-- Macro to define a cone -->
     <xacro:macro name="cone" params="name type pose">
     <model name="${name}">
@@ -75,4 +76,5 @@
         </link>
     </model>
     </xacro:macro>
-</robot>
+
+</sdf>
