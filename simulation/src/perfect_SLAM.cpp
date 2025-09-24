@@ -79,7 +79,7 @@ private:
   void publish_map() {
     common_msgs::msg::ConeArray cone_array;
     cone_array.header = last_header_;
-    cone_array.header.frame_id = "map";
+    cone_array.header.frame_id = "odom";
     cone_array.unknown_cones.clear();
     cone_array.yellow_cones.clear();
     cone_array.blue_cones.clear();
