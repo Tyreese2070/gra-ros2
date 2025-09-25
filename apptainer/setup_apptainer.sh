@@ -38,6 +38,9 @@ cd "$SETUP_DIR"
 echo "Setup complete! Files are ready in $SETUP_DIR/"
 apptainer build --nv ros_jazzy.sif ros_jazzy.def
 
+# Cleanup to not waste disk space
+rm $SETUP_DIR/ros_gz_bridge.py $SETUP_DIR/cuda-keyring_1.1-1_all.deb $SETUP_DIR/ZED_SDK_Ubuntu24_cuda12.8_tensorrt10.9_v5.0.5.zstd.run 
+
 # Create another env that the user can source
 echo "Bootstrap: localimage
 From: $SETUP_DIR/ros_jazzy.sif
@@ -48,7 +51,7 @@ From: $SETUP_DIR/ros_jazzy.sif
 
 %environment
     # Inherit and ensure base environment is sourced
-    export GZ_SIM_RESOURCE_PATH=$SETUP_DIR/colcon_ws/install/simulation/share/
+    export GZ_SIM_RESOURCE_PATH=~/colcon_ws/install/simulation/share/
     source /opt/ros/jazzy/setup.bash
     
     # CUDA paths (if needed for your additions)
