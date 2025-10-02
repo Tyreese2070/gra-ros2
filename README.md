@@ -1,5 +1,5 @@
 # Prerequisites
->**Important:** Building from source is only recommended if you have a powerful enough NVIDIA machine (RTX 2060 or more) and are willing to setup dual boot `Ubuntu 24.04`. If not follow the instructions at [apptainer](https://github.com/GryphonRacingAI/gra-ros2/tree/dev/apptainer) to create a container in the university computers where all the below is done.
+>**Important:** Building pre-requisites from below is only recommended if you have a powerful enough NVIDIA machine (RTX 2060 or more) and are willing to setup dual boot `Ubuntu 24.04`. If not follow the instructions at [apptainer](https://github.com/GryphonRacingAI/gra-ros2/tree/dev/apptainer) to create a container in the university computers where all the below is done.
 
 
 This package is intended for the following:
