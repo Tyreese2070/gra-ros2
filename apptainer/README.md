@@ -1,9 +1,12 @@
-**Note:** this is only for UoL students with access to the Bragg Compute Cluster.
+**Note:** this is **ONLY** for UoL students with access to the Bragg Compute Cluster.
 
 
-## ROS Jazzy Apptainer Setup
+
+## ROS Jazzy Apptainer Setup 
 Follow each bullet point in steps below.
->1. Open a terminal in uni cluster
+>1. Open the terminal app in uni cluster (press Windows Key <kbd>⊞</kbd> and search for `terminal`). 
+
+If you are using your own laptop go to [this section](#accessing-university-apptainer-containers-remotely-using-ssh-with-gui) to setup VPN and remotely access Bragg Computers.
 
 Clone `gra-ros2` into dev branch
 ```bash
@@ -11,8 +14,11 @@ mkdir -p ~/colcon_ws/src
 git clone -b dev https://github.com/GryphonRacingAI/gra-ros2.git ~/colcon_ws/src
 cd ~/colcon_ws/src/apptainer
 ```
->2. Building apptainer container with dependencies and ros2 jazzy environment.
-- Paste the contents of `setup_apptainer.sh` into the terminal.
+>2. Run the build script to get container environment with dependencies and ros2 jazzy environment.
+```bash
+chmod u+x setup_apptainer.sh
+. ./setup_apptainer.sh
+```
 
 This automaticallys builds the container images and places in `/local/data/$USER` in 15 minutes
 
@@ -64,10 +70,11 @@ apptainer build custom.sif custom.def
 apptainer shell --nv custom.sif
 ```
 Update our `fsai` alias & create your `.fsarc` files for ease.
+
 ## Accessing University Apptainer containers remotely using SSH with GUI
 Over weekends or out of uni hours you can access your containers using the method below.
->Get uol vpn
-
+>Get uol vpn: [Ivanti Secure Access Client Download](https://library.ucdavis.edu/vpn/)
+- Add UOL VPN server url `<server-url>`
 - Go to `feng-linux.leeds.ac.uk` on your browser
 - `ssh -Y <username>@uol-pc-<id>` make sure to note the `<id>` of local pc where you installed your containers
 
@@ -77,7 +84,9 @@ module add wol
 wol -h <ip> <mac>
 ```
 
-Email the Technical Director: `sc23pg@leeds.ac.uk` for the `ip`, `mac`, and `id` values of 
+> Continue setting things up by following the instructions [above](#ros-jazzy-apptainer-setup)
+
+Email or message on Teams the Technical Director: `sc23pg@leeds.ac.uk` for the values of `ip`, `mac`, `id`, `<server-url>` as I am not sure I can share this in a public repo.
 
 If too many people use the same local pc things may be slow so `sc23pg` may have to request for more: `ip`, `mac` values for a pc with `id` in Bragg Cluster.
 
