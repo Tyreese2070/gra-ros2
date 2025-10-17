@@ -30,9 +30,17 @@ apptainer shell --nv /local/data/$USER/ros_jazzy.sif
 When you see the REPL below you are inside your container.
 
 ```Apptainer>```
+
+
 >4. Sourcing environment
 ```bash
 source /opt/ros/jazzy/setup.bash && source ~/colcon_ws/install/setup.bash
+```
+
+Run Colcon Build command
+```bash
+cd ~/colcon_ws
+colcon build
 ```
 
 You can create a file in `~` like `.fsairc` with any source or config scripts.
