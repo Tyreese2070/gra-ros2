@@ -9,6 +9,7 @@
 #include <ackermann_msgs/msg/ackermann_drive.hpp>
 #include <std_msgs/msg/float64.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>
+#include <string>
 
 class AckermannToSpeedSteerNode : public rclcpp::Node {
 public:
@@ -36,6 +37,12 @@ public:
     }
 
 private:
+    std::string speed_cmd_topic_;
+    std::string steer_cmd_topic_;
+    std::string steer_angle_topic_;
+    std::string ackermann_cmd_topic_;
+    std::string joint_states_topic_;
+
     std_msgs::msg::Float64 speed_cmd_msg_;
     std_msgs::msg::Float64 steer_cmd_msg_;
     std_msgs::msg::Float64 steer_angle_msg_;
