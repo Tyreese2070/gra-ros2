@@ -11,7 +11,6 @@ from tf2_geometry_msgs import do_transform_point
 from tf2_ros import TransformException
 from tf2_ros.buffer import Buffer
 from tf2_ros.transform_listener import TransformListener
-from fsd_path_planning import PathPlanner, MissionTypes
 
 """
 TODO:
@@ -215,9 +214,43 @@ class CentrelineTrackPathfinder(Node):
     
     def publish_path(self, path):
         """Convert algorithm output to ROS Path message"""
-        pass
+        if path is None or len(path) < 5:
+            self.get_logger().warn("Path is empty or too short, not publishing.")
+            return
+
+        ros_path = Path()
+        ros_path.header = Header()
+        ros_path.header.stamp = self.get_clock().now().to_msg()
+        ros_path.header.frame_id = 'odom'
+
+        # Start from the 5th waypoint, skipping the first four
+        for point in path[4:]:
+            # Defensive: check point shape and type
+            if len(point) < 3 or not all(isinstance(x, (float, np.floating, int)) for x in point[1:3]):
+                self.get_logger().warn(f"Skipping invalid path point: {point}")
+                continue
+            pose = PoseStamped()
+            pose.header = ros_path.header
+            pose.pose.position.x = float(point[1])
+            pose.pose.position.y = float(point[2])
+            pose.pose.position.z = 0.0
+            ros_path.poses.append(pose)
+
+        if not ros_path.poses:
+            self.get_logger().warn("No valid poses in path, not publishing.")
+            return
+
+        self.path_pub.publish(ros_path)
 
 
 def main(args=None):
     """ROS2 entry point"""
-    pass
+
+    rclpy.init(args=args)
+    node = CentrelineTrackPathfinder()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
